@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import FloatingParticles from "@/components/ui/FloatingParticles";
 
 const playfair = Playfair_Display({ 
   subsets: ["latin"],
@@ -26,10 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${plusJakarta.variable}`}>
-      <body className={plusJakarta.className}>
-        <div className="grain-overlay"></div>
-        {children}
-      </body>
+       <body className={plusJakarta.className}>
+         <div className="grain-overlay"></div>
+         <FloatingParticles />
+         {children}
+       </body>
     </html>
   );
 }

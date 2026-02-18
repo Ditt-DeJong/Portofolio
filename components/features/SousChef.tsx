@@ -31,7 +31,6 @@ const SousChef = () => {
     try {
       const response = await generateGeminiContent(userMsg, systemPrompt);
       
-      // Delay sedikit agar terasa natural jika response terlalu cepat (demo mode)
       setTimeout(() => {
         if (response) {
           setMessages(prev => [...prev, { role: 'assistant', text: response }]);
@@ -56,7 +55,7 @@ const SousChef = () => {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="absolute bottom-16 right-0 w-80 md:w-96 bg-[#14213D] border border-[#F5F5DC]/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            className="absolute bottom-16 right-0 w-[calc(100vw-3rem)] md:w-96 bg-[#14213D] border border-[#F5F5DC]/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col origin-bottom-right"
           >
             <div className="p-4 bg-[#F5F5DC]/5 border-b border-[#F5F5DC]/10 flex justify-between items-center">
               <div className="flex items-center gap-2">

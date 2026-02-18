@@ -58,7 +58,7 @@ const Kitchen = () => {
   };
 
   return (
-    <section id="kitchen" className="min-h-screen py-24 px-6 relative flex flex-col justify-center">
+    <section id="kitchen" className="min-h-screen py-24 px-8 md:px-12 lg:px-20 relative flex flex-col justify-center">
       <div className="container mx-auto max-w-4xl">
         <motion.div
            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

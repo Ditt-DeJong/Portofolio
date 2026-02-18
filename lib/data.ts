@@ -5,6 +5,7 @@ export const DATA = {
   about: {
     age: "17 Tahun",
     specialMenu: "React.js & Creative Interaction",
+    ownership: "Someone Special",
     tags: [
       { icon: Music, text: "Music Enthusiast" },
       { icon: Terminal, text: "Front-end Dev" },

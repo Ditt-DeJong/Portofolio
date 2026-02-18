@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Intro = () => (
-  <section id="intro" className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-6">
+  <section id="intro" className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-8 md:px-12 lg:px-20">
     <motion.div 
       animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 0], opacity: [0.3, 0.5, 0.3] }}
       transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -44,7 +44,7 @@ const Intro = () => (
 
     <motion.div 
       animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }}
-      className="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs uppercase tracking-widest opacity-50 text-[#F5F5DC]"
+      className="absolute bottom-10 inset-x-0 flex justify-center text-xs uppercase tracking-widest opacity-50 text-[#F5F5DC]"
     >
       Scroll to Explore
     </motion.div>
