@@ -29,7 +29,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 w-full z-50 px-8 md:px-12 lg:px-20 py-6 flex justify-between items-center transition-all duration-300 ${scrolled ? 'bg-[#14213D]/80 backdrop-blur-md border-b border-[#F5F5DC]/5' : ''}`}
+      className={`fixed top-0 w-full z-50 px-8 md:px-12 lg:px-20 py-8 flex justify-between items-center transition-all duration-300 ${scrolled ? 'bg-[#14213D]/80 backdrop-blur-md border-b border-[#F5F5DC]/5' : ''}`}
     >
       <div className="text-2xl font-bold serif tracking-wider cursor-pointer z-50 text-[#F5F5DC]">
         IMAGINATION.

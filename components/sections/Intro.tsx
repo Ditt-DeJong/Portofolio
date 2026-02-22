@@ -21,24 +21,24 @@ const Intro = () => (
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
         className="text-[#F5F5DC]/60 uppercase tracking-[0.3em] text-sm mb-4"
       >
-        Portfolio 2024
+        Portfolio 2026
       </motion.p>
       <motion.h1 
         initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }}
-        className="text-5xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight text-[#F5F5DC]"
+        className="text-5xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight text-[#F5F5DC] tracking-wide"
       >
-        Welcome to <br />
-        <span className="italic font-light">my imagination</span>
+        The Next Version <br />
+        <span className="italic font-light tracking-widest">Portofolio</span>
       </motion.h1>
       <motion.div 
         initial={{ width: 0 }} animate={{ width: "100px" }} transition={{ delay: 1, duration: 1 }}
-        className="h-[1px] bg-[#F5F5DC] mx-auto mb-8"
+        className="h-[1px] bg-[#F5F5DC] mx-auto mb-20"
       />
       <motion.p 
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
-        className="max-w-md mx-auto text-[#F5F5DC]/80 font-light text-lg"
+        className="max-w-xl mx-auto text-[#F5F5DC]/80 font-light text-lg"
       >
-        "Crafting digital experiences where logic meets artistry."
+        "Portofolio Digital Hasil Rekayasa Logika dan Kecerdasan Buatan."
       </motion.p>
     </div>
 
