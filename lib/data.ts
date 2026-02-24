@@ -33,8 +33,13 @@ export const DATA = {
     }
   ],
   achievements: [
-    { title: "Juara 1 LKS Web Tech", issuer: "Tingkat Provinsi", year: "2024" },
-    { title: "Best UI/UX Design", issuer: "Hackathon Nasional", year: "2023" },
-    { title: "Google Certified Dev", issuer: "Google Developer Group", year: "2023" }
-  ]
+    { title: "Revou Coding Camp Software Engineering", issuer: "Coding Camp", year: "2025", fileUrl: "/certificates/Coding Camp_page-0001.jpg" },
+    { title: "FUSION-TECH Pemrograman", issuer: "Fusion Tech", year: "2024", fileUrl: "/certificates/FUSION-TECH - Pemrogaman.png" },
+    { title: "IDTC", issuer: "IDTC", year: "2024", fileUrl: "/certificates/IDTC_page-0001.jpg" },
+    { title: "ITC Web Design", issuer: "ITC", year: "2024", fileUrl: "/certificates/ITC - Web Design (1)_page-0001.jpg" },
+    { title: "IT-CAS Pemenang", issuer: "IT-CAS", year: "2024", fileUrl: "/certificates/Sertifikat IT-CAS Pemenang -19 (2) (1)_page-0001.jpg" },
+    { title: "Sertifikat Rifqi Aditya Rachman", issuer: "Sertifikat", year: "2024", fileUrl: "/certificates/Rifqi_Aditya_Rachman_page-0001.jpg" },
+    { title: "Sertifikat Bahasa Indonesia", issuer: "Penghargaan", year: "2024", fileUrl: "/certificates/Rifqi Aditya Rachman - Bahasa Indonesia 7974_page-0003.jpg" },
+    { title: "Sertifikat Penghargaan", issuer: "Penghargaan", year: "2024", fileUrl: "/certificates/Sertifikat_Rifqi Aditya Rachman (1).jpg" },
+  ] as { title: string; issuer: string; year: string; fileUrl?: string }[]
 };

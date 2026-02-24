@@ -53,9 +53,18 @@ const WanderingBloop = ({
     let timeoutId: NodeJS.Timeout;
 
     const wander = async () => {
-      await new Promise(resolve => {
-        timeoutId = setTimeout(resolve, delay);
-      });
+      // Initial stagger delay
+      if (delay > 0) {
+        await new Promise(resolve => {
+          timeoutId = setTimeout(resolve, delay);
+        });
+      }
+
+      // First move immediately
+      if (isMounted) {
+        const startPos = getRandomPosition();
+        controls.set({ x: startPos.x, y: startPos.y });
+      }
 
       while (isMounted) {
         const pos = getRandomPosition();
@@ -63,13 +72,11 @@ const WanderingBloop = ({
           x: pos.x,
           y: pos.y,
           transition: {
-            duration: 6 + Math.random() * 4,
-            ease: [0.25, 0.1, 0.25, 1],
+            duration: 8 + Math.random() * 4, // 8-12 seconds per move (slower = smoother)
+            ease: "linear", // linear constant movement prevents stop-start jerky feel
           },
         });
-        await new Promise(resolve => {
-          timeoutId = setTimeout(resolve, 500 + Math.random() * 1500);
-        });
+        // No pause between movements for continuous flow
       }
     };
 
@@ -86,7 +93,8 @@ const WanderingBloop = ({
       ref={bloopRef}
       animate={controls}
       onClick={onClick}
-      whileHover={{ scale: 1.15, boxShadow: "0 0 40px rgba(245, 245, 220, 0.3)" }}
+      style={{ willChange: "transform" }}
+      whileHover={{ scale: 1.15, boxShadow: "0 0 40px rgba(245, 245, 220, 0.3)", transition: { duration: 0.2 } }}
       className={`absolute top-0 left-0 ${size} rounded-full ${bgClass} border border-[#F5F5DC]/20 backdrop-blur-md flex items-center justify-center text-[#F5F5DC] font-medium tracking-wider text-sm md:text-base z-10 transition-colors hover:bg-[#F5F5DC]/20 p-4 cursor-pointer`}
     >
       {label}
@@ -103,6 +111,7 @@ const SwipeCard = ({
   onSwipe,
   onTap,
   isTop,
+  globalIndex,
 }: {
   imageNum: number;
   category: string;
@@ -111,6 +120,7 @@ const SwipeCard = ({
   onSwipe: () => void;
   onTap: () => void;
   isTop: boolean;
+  globalIndex: number;
 }) => {
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-300, 0, 300], [-25, 0, 25]);
@@ -182,7 +192,7 @@ const SwipeCard = ({
               {category}
             </span>
             <span className="text-[#F5F5DC] text-lg font-light tracking-wider">
-              Photo #{String(totalCards - index).padStart(2, '0')}
+              Photo #{String(globalIndex + 1).padStart(2, '0')}
             </span>
           </div>
           {isTop && (
@@ -427,7 +437,7 @@ const About = () => {
                   </div>
 
                   {/* Card Stack Container */}
-                  <div className="relative w-full max-w-[340px] aspect-[3/4] overflow-hidden">
+                  <div className="relative w-full max-w-[340px] aspect-[3/4]">
                     <AnimatePresence>
                       {remainingCards.length > 0 ? (
                         [...remainingCards].reverse().map((num, reverseIdx) => {
@@ -438,6 +448,7 @@ const About = () => {
                               imageNum={num}
                               category={selectedCategory}
                               index={actualIdx}
+                              globalIndex={currentImages.indexOf(num)}
                               totalCards={currentImages.length}
                               onSwipe={handleSwipe}
                               onTap={() => setLightboxImage(num)}
@@ -492,8 +503,6 @@ const About = () => {
                         className="flex items-center gap-2 text-[#F5F5DC]/25 text-[10px] tracking-[0.2em] uppercase"
                       >
                         <span>← Swipe to browse →</span>
-                        <span>·</span>
-                        <span>Tap to expand</span>
                       </motion.div>
                     )}
                   </div>
