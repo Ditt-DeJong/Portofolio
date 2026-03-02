@@ -34,12 +34,12 @@ export const DATA = {
   ],
   achievements: [
     { title: "Revou Coding Camp Software Engineering", issuer: "Coding Camp", year: "2025", fileUrl: "/certificates/Coding Camp_page-0001.jpg" },
-    { title: "FUSION-TECH Pemrograman", issuer: "Fusion Tech", year: "2024", fileUrl: "/certificates/FUSION-TECH - Pemrogaman.png" },
-    { title: "IDTC", issuer: "IDTC", year: "2024", fileUrl: "/certificates/IDTC_page-0001.jpg" },
-    { title: "ITC Web Design", issuer: "ITC", year: "2024", fileUrl: "/certificates/ITC - Web Design (1)_page-0001.jpg" },
-    { title: "IT-CAS Pemenang", issuer: "IT-CAS", year: "2024", fileUrl: "/certificates/Sertifikat IT-CAS Pemenang -19 (2) (1)_page-0001.jpg" },
-    { title: "Sertifikat Rifqi Aditya Rachman", issuer: "Sertifikat", year: "2024", fileUrl: "/certificates/Rifqi_Aditya_Rachman_page-0001.jpg" },
-    { title: "Sertifikat Bahasa Indonesia", issuer: "Penghargaan", year: "2024", fileUrl: "/certificates/Rifqi Aditya Rachman - Bahasa Indonesia 7974_page-0003.jpg" },
-    { title: "Sertifikat Penghargaan", issuer: "Penghargaan", year: "2024", fileUrl: "/certificates/Sertifikat_Rifqi Aditya Rachman (1).jpg" },
+    { title: "FUSION-TECH Pemrograman", issuer: "Universitas Teknologi Yogyakarta", year: "2025", fileUrl: "/certificates/FUSION-TECH - Pemrogaman.png" },
+    { title: "IDTC", issuer: "Institut Teknologi Nasional", year: "2025", fileUrl: "/certificates/IDTC_page-0001.jpg" },
+    { title: "ITC Web Design", issuer: "Universitas Dian Nuswantoro", year: "2025", fileUrl: "/certificates/ITC - Web Design (1)_page-0001.jpg" },
+    { title: "IT-CAS Pemenang", issuer: "Universitas AMIKOM Surakarta", year: "2025", fileUrl: "/certificates/Sertifikat IT-CAS Pemenang -19 (2) (1)_page-0001.jpg" },
+    { title: "Sertifikat Rifqi Aditya Rachman", issuer: "Pemuda Internasional", year: "2026", fileUrl: "/certificates/Rifqi_Aditya_Rachman_page-0001.jpg" },
+    { title: "Sertifikat Bahasa Indonesia", issuer: "University ID", year: "2026", fileUrl: "/certificates/Rifqi Aditya Rachman - Bahasa Indonesia 7974_page-0003.jpg" },
+    { title: "Sertifikat Penghargaan", issuer: "Karya Nusa", year: "2026", fileUrl: "/certificates/Sertifikat_Rifqi Aditya Rachman (1).jpg" },
   ] as { title: string; issuer: string; year: string; fileUrl?: string }[]
 };

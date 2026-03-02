@@ -1,12 +1,26 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowRight, Award, X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { DATA } from '@/lib/data';
 
 const Achievements = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 200 };
+  const previewX = useSpring(mouseX, springConfig);
+  const previewY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    // Offset slightly so it's next to the cursor instead of directly under it
+    mouseX.set(e.clientX + 20);
+    mouseY.set(e.clientY + 20);
+  };
 
   const selectedItem = selectedIndex !== null ? DATA.achievements[selectedIndex] : null;
 
@@ -53,6 +67,9 @@ const Achievements = () => {
               onClick={() => {
                 if (item.fileUrl) setSelectedIndex(i);
               }}
+              onMouseMove={handleMouseMove}
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
               className="flex flex-col md:flex-row md:items-center justify-between border-b border-[#F5F5DC]/20 py-8 px-4 cursor-pointer group text-[#F5F5DC] gap-4 md:gap-0"
             >
               <div className="flex items-center gap-4 md:gap-6">
@@ -71,6 +88,32 @@ const Achievements = () => {
           ))}
         </div>
       </div>
+
+      {/* Cursor Follow Image Preview */}
+      <AnimatePresence>
+        {hoveredIndex !== null && selectedIndex === null && DATA.achievements[hoveredIndex].fileUrl && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ ease: "easeOut", duration: 0.2 }}
+            style={{
+              position: 'fixed',
+              left: previewX,
+              top: previewY,
+              zIndex: 40,
+              pointerEvents: 'none'
+            }}
+            className="hidden md:block w-64 rounded-xl overflow-hidden shadow-2xl border border-[#F5F5DC]/20 bg-[#0a0a0a]"
+          >
+            <img 
+              src={DATA.achievements[hoveredIndex].fileUrl} 
+              alt={DATA.achievements[hoveredIndex].title}
+              className="w-full h-auto object-cover"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Certificate Modal */}
       <AnimatePresence>
