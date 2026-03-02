@@ -16,6 +16,16 @@ const Achievements = () => {
   const previewX = useSpring(mouseX, springConfig);
   const previewY = useSpring(mouseY, springConfig);
 
+  // Hard-preload all certificate images so they are fully ready in browser cache
+  React.useEffect(() => {
+    DATA.achievements.forEach((item) => {
+      if (item.fileUrl) {
+        const img = new window.Image();
+        img.src = item.fileUrl;
+      }
+    });
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent) => {
     // Offset slightly so it's next to the cursor instead of directly under it
     mouseX.set(e.clientX + 20);
@@ -90,30 +100,28 @@ const Achievements = () => {
       </div>
 
       {/* Cursor Follow Image Preview */}
-      <AnimatePresence>
-        {hoveredIndex !== null && selectedIndex === null && DATA.achievements[hoveredIndex].fileUrl && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ ease: "easeOut", duration: 0.2 }}
-            style={{
-              position: 'fixed',
-              left: previewX,
-              top: previewY,
-              zIndex: 40,
-              pointerEvents: 'none'
-            }}
-            className="hidden md:block w-64 rounded-xl overflow-hidden shadow-2xl border border-[#F5F5DC]/20 bg-[#0a0a0a]"
-          >
+      <motion.div
+        style={{
+          position: 'fixed',
+          left: previewX,
+          top: previewY,
+          zIndex: 40,
+          pointerEvents: 'none',
+          opacity: hoveredIndex !== null && selectedIndex === null && DATA.achievements[hoveredIndex]?.fileUrl ? 1 : 0,
+        }}
+        className="hidden md:block w-64 rounded-xl overflow-hidden shadow-2xl border border-[#F5F5DC]/20 bg-[#0a0a0a]"
+      >
+        {DATA.achievements.map((item, index) => (
+          item.fileUrl ? (
             <img 
-              src={DATA.achievements[hoveredIndex].fileUrl} 
-              alt={DATA.achievements[hoveredIndex].title}
-              className="w-full h-auto object-cover"
+              key={index}
+              src={item.fileUrl} 
+              alt={item.title}
+              className={`w-full h-auto object-cover transition-opacity duration-0 ${hoveredIndex === index ? 'relative opacity-100' : 'absolute top-0 left-0 opacity-0'}`}
             />
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ) : null
+        ))}
+      </motion.div>
 
       {/* Certificate Modal */}
       <AnimatePresence>
