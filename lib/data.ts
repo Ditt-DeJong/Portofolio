@@ -14,19 +14,19 @@ export const DATA = {
   },
   projects: [
     {
-      title: "Ethereal Commerce",
+      title: "Presensi Digital",
       desc: "Platform e-commerce dengan pengalaman belanja 3D immersive.",
       tech: ["Next.js", "Three.js", "Tailwind"],
-      id: 1
+      id: 1,
     },
     {
-      title: "Nexus Dashboard",
+      title: "Site-Check Alpha Core V1",
       desc: "SaaS Analytics dashboard dengan visualisasi data real-time.",
       tech: ["React", "D3.js", "Firebase"],
       id: 2
     },
     {
-      title: "Zenith Portfolio",
+      title: "Sistem Pendaftaran Magang",
       desc: "Template portofolio minimalis untuk fotografer kelas dunia.",
       tech: ["Vue", "GSAP", "Strapi"],
       id: 3
@@ -43,3 +43,4 @@ export const DATA = {
     { title: "Sertifikat Penghargaan", issuer: "Karya Nusa", year: "2026", fileUrl: "/certificates/Sertifikat_Rifqi Aditya Rachman (1).jpg" },
   ] as { title: string; issuer: string; year: string; fileUrl?: string }[]
 };
+ 

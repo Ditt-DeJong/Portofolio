@@ -68,15 +68,23 @@ const WanderingBloop = ({
 
       while (isMounted) {
         const pos = getRandomPosition();
-        await controls.start({
-          x: pos.x,
-          y: pos.y,
-          transition: {
-            duration: 8 + Math.random() * 4, // 8-12 seconds per move (slower = smoother)
-            ease: "linear", // linear constant movement prevents stop-start jerky feel
-          },
-        });
-        // No pause between movements for continuous flow
+        try {
+          await controls.start({
+            x: pos.x,
+            y: pos.y,
+            transition: {
+              duration: 8 + Math.random() * 4, // 8-12 seconds per move (slower = smoother)
+              ease: "linear", // linear constant movement prevents stop-start jerky feel
+            },
+          });
+        } catch (error) {
+          // Ignore animation sequence interruptions
+        }
+        // CRITICAL FIX: Always add a small delay to prevent infinite `while` loop 
+        // if framer-motion resolves instantly (e.g. tab hidden, or target is same as current)
+        if (isMounted) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
       }
     };
 
@@ -176,7 +184,7 @@ const SwipeCard = ({
         src={`/images/Aku (${imageNum}).jpeg`}
         alt={`${category} photo ${imageNum}`}
         fill
-        className="object-cover"
+        className="object-cover pointer-events-none"
         sizes="(max-width: 768px) 80vw, 400px"
         priority={isTop}
       />
@@ -196,12 +204,19 @@ const SwipeCard = ({
             </span>
           </div>
           {isTop && (
-            <motion.div
+            <motion.button
+              onPointerDown={(e) => e.stopPropagation()} // Prevent drag initiation on this button
+              onClick={(e) => {
+                e.stopPropagation();
+                onTap();
+              }}
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
+              className="p-2 bg-black/40 border border-[#F5F5DC]/20 hover:bg-[#F5F5DC]/20 rounded-full transition-colors cursor-pointer backdrop-blur-md"
+              title="View Fullscreen"
             >
-              <Maximize2 className="text-[#F5F5DC]/50 w-5 h-5" />
-            </motion.div>
+              <Maximize2 className="text-[#F5F5DC] w-4 h-4" />
+            </motion.button>
           )}
         </div>
       </div>
